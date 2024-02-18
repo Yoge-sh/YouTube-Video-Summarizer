@@ -2,19 +2,11 @@ import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
 import google.generativeai as genai
-import os
 
 from youtube_transcript_api import YouTubeTranscriptApi
 
+# genai.configure(api_key=GOOGLE_API_KEY)
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
-
-# prompt = """You are Youtube video summarizer. 
-# You will be taking the transcript text and 
-# summarizing the entire video and providing
-#  the important summary points withing 250 words. 
-#  Please provide the summary of the text given below"""
-
 
 
 def extract_transcript_details(youtube_video_url):
@@ -41,7 +33,6 @@ st.title('Youtube Video ➡️ Quick Notes')
 
 youtube_link = st.text_input('Enter the youtube vide link :')
 subject = st.text_input('Enter the topic explained in the video :')
-# subject = 'neural networks'
 
 prompt = f"""You are Youtube video summarizer for the given transcript of the youtube video on {subject} You will be taking the
  transcript text and Summarize the key concepts and insights from a this transcript on  {subject}  Provide concise and comprehensive 
